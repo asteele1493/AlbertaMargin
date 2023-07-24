@@ -15,12 +15,14 @@ const styles = StyleSheet.create({
 
 
 export default RegularMargin = () => {
-  const [quantity, setQuantity] = useState(0);
-  const [casePrice, setCasePrice] = useState(0);
+  const [quantity, setQuantity] = useState('');
+  const [casePrice, setCasePrice] = useState('');
+  const [costPerUnit, setCostPerUnit] = useState('');
+  const [price, setPrice] = useState('');
 
-  // Helper function to check if a value is numeric
+  //Helper function to check if a value is numeric
   const isNumeric = (value) => {
-    return /^\d+$/.test(value);
+    return /^[+]?\d+(\.\d+)?$/.test(value);
   };
 
   // Calculate the cost per unit and price
@@ -28,13 +30,13 @@ export default RegularMargin = () => {
     if (isNumeric(quantity) && isNumeric(casePrice)) {
       const costPerUnit = casePrice / quantity;
       const price = costPerUnit / 0.60;
-      return { costPerUnit, price };
+      setCostPerUnit(costPerUnit.toFixed(2));
+      setPrice(price.toFixed(2));
     } else {
-      return { costPerUnit: 0, price: 0 };
+      setCostPerUnit('0.00');
+      setPrice('0.00');
     }
   };
-
-  const { costPerUnit, price } = calculateValues();
 
   return (
     <View style={styles.container}>
@@ -44,11 +46,8 @@ export default RegularMargin = () => {
           label="Quantity"
           value={quantity.toString()}
           onChangeText={(text) => {
-            if (isNumeric(text)) {
-              setQuantity(parseInt(text));
-            } else {
-              setQuantity(0);
-            }
+            setQuantity(text);
+            calculateValues(); // Call the function whenever the quantity changes
           }}
           keyboardType="numeric"
         />
@@ -58,11 +57,8 @@ export default RegularMargin = () => {
           label="Case Price"
           value={casePrice.toString()}
           onChangeText={(text) => {
-            if (isNumeric(text)) {
-              setCasePrice(parseInt(text));
-            } else {
-              setCasePrice(0);
-            }
+            setCasePrice(text);
+            calculateValues(); // Call the function whenever the casePrice changes
           }}
           keyboardType="numeric"
         />
