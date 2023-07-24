@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import RegularMargin from './components/RegularMargin';
+import BerryMargin from './components/BerryMargin';
+import SaleMargin from './components/SaleMargin';
 
-export default function App() {
+
+export default App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <ScrollView>
+    <View>
+    <Text>Margin Calculator</Text>
+    <RegularMargin/>
+    <BerryMargin/>
+    <SaleMargin/>
     </View>
-  );
+    </ScrollView>
+  )
 }
+ 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20,
+    justifyContent: 'left',
   },
+  row: {
+    marginVertical: 8,
+  },
+  scrollView: {
+    backgroundColor: 'pink',
+    marginHorizontal: 20,
+  },
+  text: {
+    fontStyles: 'italic' ,
+    fontSize: 28,
+    fontWeight: 'bold',
+  }
 });
