@@ -14,8 +14,9 @@ const styles = StyleSheet.create({
 });
 
 export default BerryMargin = () => {
-  const [quantity, setQuantity] = useState(0);
-  const [casePrice, setCasePrice] = useState(0);
+  const [quantity, setQuantity] = useState('');
+  const [casePrice, setCasePrice] = useState('');
+  // const [costPerUnit, setCostPerUnit] = useState(0);
 
   // Helper function to check if a value is numeric
   const isNumeric = (value) => {
@@ -44,7 +45,7 @@ export default BerryMargin = () => {
           value={quantity.toString()}
           onChangeText={(text) => {
             if (isNumeric(text)) {
-              setQuantity(parseInt(text));
+              setQuantity(parseFloat(text));
             } else {
               setQuantity(0);
             }
@@ -58,7 +59,7 @@ export default BerryMargin = () => {
           value={casePrice.toString()}
           onChangeText={(text) => {
             if (isNumeric(text)) {
-              setCasePrice(parseInt(text));
+              setCasePrice(parseFloat(text));
             } else {
               setCasePrice(0);
             }
