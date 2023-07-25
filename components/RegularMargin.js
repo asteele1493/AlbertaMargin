@@ -27,14 +27,16 @@ export default RegularMargin = () => {
 
   // Calculate the cost per unit and price
   const calculateValues = () => {
-    if (isNumeric(quantity) && isNumeric(casePrice)) {
-      const costPerUnit = casePrice / quantity;
-      const price = costPerUnit / 0.60;
-      setCostPerUnit(costPerUnit.toFixed(2));
-      setPrice(price.toFixed(2));
+
+    if (quantity && casePrice) {
+      const costPerUnit = (parseFloat(casePrice) / parseFloat(quantity)).toFixed(2);
+      const price = (costPerUnit / (1 - 0.40)).toFixed(2);
+
+      setCostPerUnit(costPerUnit);
+      setPrice(price);
     } else {
-      setCostPerUnit('0.00');
-      setPrice('0.00');
+    setCostPerUnit('0.00');
+    setPrice('0.00');
     }
   };
 
@@ -46,8 +48,15 @@ export default RegularMargin = () => {
           label="Quantity"
           value={quantity.toString()}
           onChangeText={(text) => {
+            if (isNumeric(text)) {
+              setQuantity(parseFloat(text));
+            } else {
+              setQuantity(0);
+            }
+
             setQuantity(text);
             calculateValues(); // Call the function whenever the quantity changes
+
           }}
           keyboardType="numeric"
         />
@@ -57,8 +66,15 @@ export default RegularMargin = () => {
           label="Case Price"
           value={casePrice.toString()}
           onChangeText={(text) => {
+
+            if (isNumeric(text)) {
+              setCasePrice(parseFloat(text));
+            } else {
+              setCasePrice(0);
+            }
             setCasePrice(text);
             calculateValues(); // Call the function whenever the casePrice changes
+
           }}
           keyboardType="numeric"
         />
