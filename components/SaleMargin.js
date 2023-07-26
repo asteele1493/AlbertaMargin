@@ -27,7 +27,7 @@ export default SaleMargin = () => {
   const calculateValues = () => {
     if (isNumeric(quantity) && isNumeric(casePrice)) {
       const costPerUnit = casePrice / quantity;
-      const price = costPerUnit / 0.65;
+      const price = costPerUnit / 0.70;
       return { costPerUnit, price };
     } else {
       return { costPerUnit: 0, price: 0 };

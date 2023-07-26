@@ -2,6 +2,7 @@
   "expo": {
     "name": "AlbertaMargin",
     "slug": "AlbertaMargin",
+    "owner": "asteele1493",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
