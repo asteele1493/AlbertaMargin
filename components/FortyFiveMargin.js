@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, ScrollView, KeyboardAvoidingView } from 'react-native'; // Import StyleSheet from react-native
+import { View, StyleSheet, Text, KeyboardAvoidingView } from 'react-native'; // Import StyleSheet from react-native
 import { TextInput } from 'react-native-paper';
 
 const styles = StyleSheet.create({
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegularMargin = () => {
+export default FortyFive = () => {
   const [quantity, setQuantity] = useState('');
   const [casePrice, setCasePrice] = useState('');
   // const [costPerUnit, setCostPerUnit] = useState(0);
@@ -32,7 +32,7 @@ export default RegularMargin = () => {
   const calculateValues = () => {
     if (isNumeric(quantity) && isNumeric(casePrice)) {
       const costPerUnit = casePrice / quantity;
-      const price = costPerUnit / 0.60;
+      const price = costPerUnit / 0.55;
       return { costPerUnit, price };
     } else {
       return { costPerUnit: 0, price: 0 };
@@ -47,10 +47,9 @@ export default RegularMargin = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : null} // Adjust behavior for Android if needed
       contentContainerStyle={styles.keyboardAvoidingContainer}
     >
-    <ScrollView>
     <View style={styles.container}>
       <View style={styles.row}>
-        <Text>40% Margin</Text>
+        <Text>45% Margin</Text>
         <TextInput
           label="Quantity"
           value={quantity.toString()}
@@ -89,7 +88,6 @@ export default RegularMargin = () => {
         <TextInput label="Price" value={price.toFixed(2)} disabled />
       </View>
     </View>
-    </ScrollView>
     </KeyboardAvoidingView>
   );
 };
